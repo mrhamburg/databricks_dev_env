@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from dbconnect import _check_is_databricks, _get_dbutils, _get_display
 
 
 def create_dataframe():
@@ -12,9 +13,21 @@ def create_dataframe():
                                 ('Orange', 'Orange', 2.0),
                                 ('Green Apple', 'Green', 2.5)],
                                ['Fruit', 'Color', 'Price'])
-    df.show()
+    #df.show()
     return df
 
 
 if __name__ == "__main__":
-    create_dataframe()
+    if _check_is_databricks():
+        print("Databricks")
+    else:
+        print("No Databricks")
+    item = _get_dbutils(
+        SparkSession.builder.appName("Dbconnect test").getOrCreate())
+    print(item)
+    items = item.fs.ls("/")
+    print(items)
+    mydf = create_dataframe()
+    display = _get_display()
+    display(mydf)
+    print("Done!")

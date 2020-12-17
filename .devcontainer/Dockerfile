@@ -19,6 +19,9 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
+RUN mkdir /extensions
+COPY /extensions/* /extensions/
+
 RUN mkdir /workspace
 WORKDIR /workspace
 
@@ -27,7 +30,13 @@ RUN python -m pip install jupyterlab jupyterlab_code_formatter
 
 # Install jupyterlab extensions
 COPY labextensions.txt /workspace/
-RUN while read line; do jupyter labextension install --no-build $line; done < labextensions.txt 
+#RUN while read line; do jupyter labextension install --no-build $line; done < labextensions.txt 
+RUN jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager@2
+RUN jupyter labextension install --no-build databrickslabs-jupyterlab-statusbar
+RUN jupyter labextension install --no-build interrupt-ipykernel-extension
+RUN jupyter labextension install --no-build jupyterlab-flake8
+RUN jupyter labextension install --no-build @jupyterlab/toc
+RUN jupyter labextension install --no-build @ryantam626/jupyterlab_code_formatter
 RUN jupyter lab build
 RUN rm labextensions.txt
 

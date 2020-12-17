@@ -1,4 +1,4 @@
-@jupyter-widgets/jupyterlab-manager
+@jupyter-widgets/jupyterlab-manager@2
 databrickslabs-jupyterlab-statusbar
 interrupt-ipykernel-extension
 jupyterlab-flake8

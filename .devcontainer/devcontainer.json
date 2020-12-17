@@ -5,10 +5,13 @@
 	"service": "pyspark",
 	"context": "..",
 	"extensions": [
-		"ms-python.python",
-		"njpwerner.autodocstring",
-		"ionutvmi.path-autocomplete",
-		"paiqo.databricks-vscode"
+		"/extensions/databricks-vscode-0.6.0.vsix",
+		"/extensions/eamodio.gitlens-11.0.6.vsix",
+		"/extensions/ionutvmi.path-autocomplete-1.15.0.vsix",
+		"/extensions/ms-python.python-2020.12.424452561.vsix",
+		"/extensions/ms-toolsai.jupyter-2020.12.414227025.vsix",
+		"/extensions/njpwerner.autodocstring-0.5.4.vsix",
+		"/extensions/SonarSource.sonarlint-vscode-1.19.0.vsix"
 	],
 	"settings": {
 		"python.pythonPath": "/usr/local/bin/python",
